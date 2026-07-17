@@ -1,45 +1,115 @@
-# Python Student Class Manager
+class Student:
 
-A simple student manager written in Python using classes.
+    def __init__(self, name, age, course):
+        self.name = name
+        self.age = age
+        self.course = course
 
-## Features
 
-- Create a student
-- View student information
-- Object-Oriented Programming (OOP)
-- Input validation
-- Console application
+def menu():
+    print("\n--- STUDENT MANAGER ---")
+    print("1. Add student")
+    print("2. View students")
+    print("3. Search student")
+    print("4. Remove student")
+    print("5. Exit")
 
-## Technologies
 
-- Python 3
+def add_student():
+    name = input("Enter student name: ")
 
-## How to Run
+    if not name:
+        print("Student name cannot be empty")
+        return
 
-```bash
-python student_class_manager.py
-```
+    try:
+        age = int(input("Enter student age: "))
+    except ValueError:
+        print("Invalid age")
+        return
 
-## Example
+    course = input("Enter course: ")
 
-```text
---- STUDENT MANAGER ---
-1. Add student
-2. View student
-3. Exit
-```
+    if not course:
+        print("Course cannot be empty")
+        return
 
-## What I Learned
+    student = Student(name, age, course)
 
-- Classes
-- Objects
-- Methods
-- Constructors (`__init__`)
-- The `self` keyword
-- Object attributes
-- Functions
-- Input validation
+    students.append(student)
 
-## Author
+    print("Student added successfully")
 
-Created by Javier as part of a Python learning journey.
+
+def view_students():
+    if not students:
+        print("No students found")
+        return
+
+    print("\n--- STUDENTS ---")
+
+    for student in students:
+        print(f"Name: {student.name}")
+        print(f"Age: {student.age}")
+        print(f"Course: {student.course}")
+        print("--------------------")
+
+
+def search_student():
+    if not students:
+        print("No students found")
+        return
+    
+    name= input("enter student name to search")
+
+    for student in students:
+        if student.name.lower()==name.lower():
+            print(f"Name: {student.name}")
+            print(f"Age: {student.age}")
+            print(f"Course: {student.course}")
+            return
+    
+    print("student not found")
+
+
+def remove_student():
+    if not students:
+        print("No students found")
+        return
+    
+    name=input("enter student name to remove")
+
+    for student in students:
+        if student.name.lower()==name.lower():
+            students.remove(student)
+            print("student removed")
+            return
+    
+    print("student not found")
+
+
+students = []
+
+
+while True:
+    menu()
+    option = input("Choose an option: ")
+
+    if option == "1":
+        add_student()
+
+    elif option == "2":
+        view_students()
+
+    elif option == "3":
+        search_student()
+
+    elif option == "4":
+        remove_student()
+
+    elif option == "5":
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid option")
